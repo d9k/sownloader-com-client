@@ -10,7 +10,17 @@ So this [Deno](https://deno.land/) script heavily relies on sownloader.com servi
 
 Thanks to original project https://github.com/hansengianto/smuledownloader for inspiration.
 
-## Installation
+## Install
+
+[ffmpeg](https://www.ffmpeg.org/download.html) with libmp3lame is required!
+
+`deno install --force --allow-all --name sownloader-com-client https://deno.land/x/sownloader_com_client/main.ts`
+
+## Running
+
+`sownloader-com-client SMULE_RECORDING_URL`
+
+## Local installation
 
 Install [velociraptor scripts runner](https://velociraptor.run/docs/installation/)
 
@@ -24,12 +34,6 @@ install script as `sownloader-com-client`:
 ```
 vr inst
 ```
-
-[ffmpeg](https://www.ffmpeg.org/download.html) with libmp3lame is required!
-
-## Running
-
-`sownloader-com-client SMULE_RECORDING_URL`
 
 ## Config
 
