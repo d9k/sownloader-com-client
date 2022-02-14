@@ -38,6 +38,18 @@ Rhum.testPlan("default test plan", () => {
         song: "STAY ALIVE"
       });
     });
+
+    Rhum.testCase("case 4: Ани Лорак - Я - та, что надо", () => {
+
+      const description = `Ани Лорак - Я - та, что надо (женская песня) recorded by YY on Smule. Sing with lyrics to your favorite karaoke songs. | Smule Social Singing Karaoke app`;
+
+      Rhum.asserts.assertEquals(smuleParseRecordingInfo(description), {
+        description,
+        originalPerformer: "Ани Лорак",
+        performers: [ "YY" ],
+        song: "Я - та, что надо (женская песня)"
+      });
+    });
   });
 });
 

@@ -2,7 +2,9 @@ import SmuleRecordingInfoRaw from './SmuleRecordingInfoRaw.ts';
 
 export default function smuleParseRecordingInfo(description: string, defaultPerformer: string = 'UnknownPerformer'): SmuleRecordingInfoRaw {
 
-  let recordingInfoParts = description.match(/(.*) - (.*) recorded by (.*) on Smule/m);
+  let recordingInfoParts = description.match(
+    /([^-\n]*) - (.*) recorded by (.*) on Smule/m
+  );
   let isJoinLink = false;
 
   if (!recordingInfoParts || !recordingInfoParts[0]) {
@@ -10,7 +12,9 @@ export default function smuleParseRecordingInfo(description: string, defaultPerf
 
     isJoinLink = true;
 
-    recordingInfoParts = description.match(/Sing (.*) - (.*) and join (.*) on Smule/m);
+    recordingInfoParts = description.match(
+      /Sing ([^-\n]*) - (.*) and join (.*) on Smule/m
+    );
   }
 
   if (!recordingInfoParts || !recordingInfoParts[0]) {
