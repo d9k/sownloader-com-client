@@ -1,0 +1,13 @@
+# velociraptor scripts config file
+
+# https://velociraptor.run/docs/installation/
+# deno install --allow-all --name vr https://deno.land/x/velociraptor/cli.ts
+# vr upgrade
+
+# https://github.com/hayd/deno-udd
+# deno install --allow-all --name udd https://deno.land/x/udd/main.ts
+
+scripts:
+  inst: deno install --force --allow-all --name sownloader-com-client main.ts
+  up: udd --dry-run deps/*.ts
+  test: deno test --allow-env

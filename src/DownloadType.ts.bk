@@ -1,0 +1,7 @@
+enum DownloadType {
+  m4a = 'm4a',
+  mp3 = 'mp3',
+  video = 'video',
+}
+
+export default DownloadType;
