@@ -20,11 +20,15 @@ export default function smuleRecordingInfoProcess(
   const performersText = performersRenamed.join(` ${processConfig.performerSeparator} `);
   const songText = `${song} (${originalPerformer} cover)`;
 
+  const fileName = `${performersText} - ${songText}`
+    // fix file names errors
+    .replace('/', '-');
+
   return {
     ...recordingInfo,
     performers: performersRenamed,
     performersText,
     songText,
-    fileName: `${performersText} - ${songText}`,
+    fileName,
   };
 }
