@@ -1,1 +1,1 @@
-export * from "https://deno.land/std@0.83.0/encoding/toml.ts";
+export * from "https://deno.land/std@0.125.0/encoding/toml.ts";

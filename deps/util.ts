@@ -1,1 +1,1 @@
-export * as default from "https://deno.land/std@0.100.0/node/util.ts";
+export * as default from "https://deno.land/std@0.125.0/node/util.ts";

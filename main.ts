@@ -76,16 +76,21 @@ const processAudio = async () => {
   await downloadFile(sownloaderDlUrls.m4a, m4a);
 
   console.log('Audio saved');
+  console.log('Converting to mp3...');
 
   await execWithTrace([
     'ffmpeg',
+    // overwrite without asking
+    '-y',
     '-i', m4a,
-    '-metadata', `artist="${recordingInfo.performersText}"`,
-    '-metadata', `title="${recordingInfo.songText}"`,
+    '-metadata', `artist=${recordingInfo.performersText}`,
+    '-metadata', `title=${recordingInfo.songText}`,
     '-codec:a', 'libmp3lame',
     '-qscale:a', '1',
     mp3,
   ]);
+
+  console.log('Converted to mp3...');
 }
 
 const processVideo = async () => {
