@@ -4,9 +4,11 @@ import * as flags from './deps/flags.ts';
 import util from "./deps/util.ts";
 import smuleFetchRecordingInfo from './src/smuleFetchRecordingInfo.ts';
 import configRead from './src/configRead.ts';
-import processSmuleRecordingInfo from './src/processSmuleRecordingInfo.ts';
+import smuleRecordingInfoProcess from './src/smuleRecordingInfoProcess.ts';
 import json from './src/json.ts';
 import sownloaderFetchDlUrls from './src/sownloaderFetchDlUrls.ts';
+import { downloadFile } from './src/downloadFile.ts';
+import execWithTrace from './src/execWithTrace.ts';
 
 util.inspect.defaultOptions.breakLength = 200;
 util.inspect.defaultOptions.maxArrayLength = 200;
@@ -44,20 +46,60 @@ const smuleRecordingUrl: string = args._[0] + '';
 
 // console.log(smuleUrlToDownload);
 
-const recordingInfo = await smuleFetchRecordingInfo(
+const recordingInfoRaw = await smuleFetchRecordingInfo(
   smuleRecordingUrl,
   defaultPerformer,
   linkPreviewNetApiKey
 );
 
-const recordingInfoProcessed = await processSmuleRecordingInfo(recordingInfo, {
+const recordingInfo = smuleRecordingInfoProcess(recordingInfoRaw, {
   performerRename,
   performerOrder,
   performerSeparator
 })
 
-console.log('recording info:', json(recordingInfoProcessed));
+console.log('recording info:', json(recordingInfo));
 
 const sownloaderDlUrls = await sownloaderFetchDlUrls(smuleRecordingUrl);
 
 console.log('sownloader dl urls:', json(sownloaderDlUrls));
+
+const { fileName } = recordingInfo;
+
+const m4a = `${fileName}.m4a`;
+const mp3 = `${fileName}.mp3`;
+const video = `${fileName}.mp4`;
+
+const processAudio = async () => {
+  console.log('Downloading audio...');
+
+  await downloadFile(sownloaderDlUrls.m4a, m4a);
+
+  console.log('Audio saved');
+
+  await execWithTrace([
+    'ffmpeg',
+    '-i', m4a,
+    '-metadata', `artist="${recordingInfo.performersText}"`,
+    '-metadata', `title="${recordingInfo.songText}"`,
+    '-codec:a', 'libmp3lame',
+    '-qscale:a', '1',
+    mp3,
+  ]);
+}
+
+const processVideo = async () => {
+  if (!sownloaderDlUrls.video) {
+    return;
+  }
+
+  console.log('Downloading video...');
+
+  await downloadFile(sownloaderDlUrls.video, video);
+
+  console.log('Video saved');
+}
+
+// run in parallel
+processAudio().then();
+processVideo().then();

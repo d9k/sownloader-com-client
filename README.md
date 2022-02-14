@@ -25,9 +25,20 @@ install script as `sownloader-com-client`:
 vr inst
 ```
 
+[ffmpeg](https://www.ffmpeg.org/download.html) with libmp3lame is required!
+
+## Running
+
+`sownloader-com-client SMULE_RECORDING_URL`
+
 ## Config
 
-Is created at `~/.sownloader-com-client` after the first run.
+Edit `~/.sownloader-com-client` (it's created after the first run).
+To avoid getting "418 I'm a teapot" http errors register at peekalink.io and fill `linkPreviewNetApiKey` value.
+
+## Running tests
+
+`vr test`
 
 ## Update dependencies
 

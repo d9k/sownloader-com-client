@@ -1,10 +1,9 @@
-export type SmuleRecordingInfo = {
-  song: string;
-  performers: string[];
-  originalPerformer: string;
+import SmuleRecordingInfoRaw from './SmuleRecordingInfoRaw.ts';
+
+export type SmuleRecordingInfo = SmuleRecordingInfoRaw & {
+  performersText: string;
+  songText: string;
   fileName?: string;
-  description: string;
-  url?: string;
 }
 
 export default SmuleRecordingInfo;

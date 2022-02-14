@@ -1,6 +1,6 @@
-import SmuleRecordingInfo from './SmuleRecordingInfo.ts';
+import SmuleRecordingInfoRaw from './SmuleRecordingInfoRaw.ts';
 
-export default function smuleParseRecordingInfo(description: string, defaultPerformer: string = 'UnknownPerformer'): SmuleRecordingInfo {
+export default function smuleParseRecordingInfo(description: string, defaultPerformer: string = 'UnknownPerformer'): SmuleRecordingInfoRaw {
   let recordingInfoParts = description.match(/(.*) - (.*) recorded by (.*) on Smule/m);
   let isJoinLink = false;
 
