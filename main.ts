@@ -13,8 +13,13 @@ import execWithTrace from './src/execWithTrace.ts';
 util.inspect.defaultOptions.breakLength = 200;
 util.inspect.defaultOptions.maxArrayLength = 200;
 
-let scriptPath = path.fromFileUrl(import.meta.url);
-let scriptFile = path.basename(scriptPath);
+// TODO can't get own name when installed from web
+//   see https://github.com/denoland/deno/issues/5725
+// let scriptPath = path.fromFileUrl(import.meta.url);
+// let scriptFile = path.basename(scriptPath);
+
+let scriptFile = 'sownloader-com-client';
+
 const configPath = Deno.env.get("HOME") + "/.sownloader-com-client";
 
 const args = flags.parse(Deno.args);
