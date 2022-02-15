@@ -10,11 +10,15 @@ So this [Deno](https://deno.land/) script heavily relies on sownloader.com servi
 
 Thanks to original project https://github.com/hansengianto/smuledownloader for inspiration.
 
-## Install
+## Install from url
 
 [ffmpeg](https://www.ffmpeg.org/download.html) with libmp3lame is required!
 
 `deno install --force --allow-all --name sownloader-com-client https://deno.land/x/sownloader_com_client/main.ts`
+
+## Upgrade from url
+
+`deno cache --reload https://deno.land/x/sownloader_com_client/main.ts`
 
 ## Running
 
