@@ -30,7 +30,7 @@ Install [velociraptor scripts runner](https://velociraptor.run/docs/installation
 
 ```
 deno install --allow-all --name vr https://deno.land/x/velociraptor/cli.ts
-vr upgrade
+vr inst
 ```
 
 install script as `sownloader-com-client`:

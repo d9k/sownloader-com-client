@@ -1,5 +1,4 @@
 #!/usr/bin/awk BEGIN{system("deno run --allow-all "ARGV[1]"  "ARGV[2]" "ARGV[3]" "ARGV[4]" "ARGV[5])}
-import * as path from './deps/path.ts';
 import * as flags from './deps/flags.ts';
 import util from "./deps/util.ts";
 import smuleFetchRecordingInfo from './src/smuleFetchRecordingInfo.ts';

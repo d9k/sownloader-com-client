@@ -2,7 +2,7 @@ import SownloaderDlUrls from './SownloaderDlUrls.ts';
 
 export default function sownloaderParseUrls(sownloaderHtml: string): SownloaderDlUrls {
   const m4aMatch = sownloaderHtml.match(
-    /(?:url\=)(https:\/\/c-cl\.cdn\.smule\.com\/.+\.m4a)/m
+    /(?:url\=)(https:\/\/[a-z\-]+\.cdn\.smule\.com\/.+\.m4a)/m
   );
 
   if (!m4aMatch) {
@@ -11,7 +11,7 @@ export default function sownloaderParseUrls(sownloaderHtml: string): SownloaderD
   }
 
   const videoMatch = sownloaderHtml.match(
-    /(?:url\=)(https:\/\/c-cl\.cdn\.smule\.com\/.+\.mp4)/m
+    /(?:url\=)(https:\/\/[a-z\-]+\.cdn\.smule\.com\/.+\.mp4)/m
   )
 
   const result: SownloaderDlUrls = {
